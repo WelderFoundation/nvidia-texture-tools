@@ -14,6 +14,14 @@
 #include <float.h>  // finite, isnan
 #endif
 
+//+WELDER
+// Emscripten/wasm doesn't have SIMD yet.
+#ifdef EMSCRIPTEN
+#   define NV_USE_SSE 0
+#   define NV_USE_ALTIVEC 0
+#endif
+//-WELDER
+
 // Set some reasonable defaults.
 #ifndef NV_USE_ALTIVEC
 #   define NV_USE_ALTIVEC NV_CPU_PPC
