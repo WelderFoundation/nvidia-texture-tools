@@ -144,12 +144,15 @@ inline float asinf_assert(const float f)
 #define asinf asinf_assert
 #endif
 
-#if NV_CC_MSVC
+#if NV_CC_MSVC && _MSC_VER < 1930
 NV_FORCEINLINE float log2f(float x)
 {
     nvCheck(x >= 0);
     return logf(x) / logf(2.0f);
 }
+#endif
+
+#if NV_CC_MSVC
 NV_FORCEINLINE float exp2f(float x)
 {
     return powf(2.0f, x);
